@@ -7,17 +7,17 @@ New-Item files -ItemType Directory
 
 # Set admin file permissions
 $acl = Get-Acl
-$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("BUILTIN\Administrators","FullControl","Allow")
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("BUILTIN\Administrators", "FullControl", "Allow")
 $acl.SetAccessRule($AccessRule)
 $acl | Set-Acl .\files\admin.txt
 
 # Set user file permissions
 $acl = Get-Acl
-$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("BUILTIN\Users","FullControl","Allow")
+$AccessRule = New-Object System.Security.AccessControl.FileSystemAccessRule("BUILTIN\Users", "FullControl", "Allow")
 $acl.SetAccessRule($AccessRule)
 $acl | Set-Acl .\files\user.txt
 
-# Create weak user to run the client
+# Create a weak user to run the client
 net user challenge2 /del
 net user challenge2 User123456 /add
 net localgroup "Remote Desktop Users" challenge2 /add
