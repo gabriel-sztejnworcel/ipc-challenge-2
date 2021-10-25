@@ -114,3 +114,8 @@ void Win32Helper::revert_to_self()
 {
     RevertToSelf();
 }
+
+void Win32Helper::close_handle(HANDLE handle)
+{
+    CloseHandle(handle);
+}

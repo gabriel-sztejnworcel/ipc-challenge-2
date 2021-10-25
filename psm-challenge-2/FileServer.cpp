@@ -36,6 +36,8 @@ void FileServer::client_handler(HANDLE pipe_server_handle)
     
     try
     {
+        int bad_attempts = 0;
+        
         while (true)
         {
             try
@@ -69,6 +71,11 @@ void FileServer::client_handler(HANDLE pipe_server_handle)
                 std::string response = "Invalid request";
                 Win32Helper::write_file(pipe_server_handle, response.c_str(), (DWORD)response.length());
                 Win32Helper::revert_to_self();
+
+                if (++bad_attempts == 2)
+                {
+                    break;
+                }
             }
         }
 
@@ -79,6 +86,8 @@ void FileServer::client_handler(HANDLE pipe_server_handle)
         output("[!] ERROR: " + std::string(ex.what()), true);
         Win32Helper::revert_to_self();
     }
+
+    Win32Helper::close_handle(pipe_server_handle);
 }
 
 std::string FileServer::get_file_content(const std::string& path)

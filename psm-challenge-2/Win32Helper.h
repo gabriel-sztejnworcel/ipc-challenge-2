@@ -17,4 +17,6 @@ public:
 
     static void impersonate_named_pipe_client(HANDLE pipe_server_handle);
     static void revert_to_self();
+
+    static void close_handle(HANDLE handle);
 };
