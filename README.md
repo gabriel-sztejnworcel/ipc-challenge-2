@@ -1,5 +1,5 @@
 # PSM Securithon 2021
-## Windows Interprocess Commnunication Security - Challenge #2
+## Windows Interprocess Commnunication - Challenge #2
 
 This application simulates a file server serving file contents from a predefined folder, with a basic access control mechanism. The application has a vulnerability and your goal is to find and exploit the vulnerability.
 
